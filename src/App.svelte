@@ -1,4 +1,15 @@
 <script>
+
+import 'chota';
+import {Input,Button,Card,Container,Icon,Row,Col} from 'svelte-chota';
+import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
+
+	const progress = tweened(0, {
+		duration: 500,
+		easing: cubicOut
+	});
+
   var trys = "";
   var odds = "";
   var result = "";
@@ -10,9 +21,10 @@ function rechne() {
   console.log(prozent, hoch);
 
 let vorresult = Math.pow(prozent, hoch)*100;
-result = vorresult.toFixed(10);
+result = vorresult.toPrecision(5);
 
 console.log(result);
+progress.set(parseFloat(result));
 return result;
 
 
@@ -24,23 +36,39 @@ return result;
 
 <main>
  
+<Card>
+
   <h1>ODDS-WIZARD</h1>
 
-  <input bind:value={trys} type="number" placeholder="Versuche?">
-  <input bind:value={odds} type="number" placeholder="Chance?">
+  <Card>
+  <Row>
+<Col>
+  <Icon src="src\assets\times.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={trys} type="number" placeholder="Versuche?">
+
+</Col>
+
+<Col>
+  <Icon src="src\assets\chance.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={odds} type="number" placeholder="Chance?">
+
+</Col>
+
+  </Row>
+
+</Card>
   <p></p>
   <p2>Chance, dass</p2>
  <p>{odds}%</p>
   <p2>bei</p2>
   <p>{trys} Rolls</p>
   <p2> nicht kommt:</p2>
+  <br>
 
 
-<button on:click="{rechne}">Rechne</button>
-<p>{result}%<p>
+<Button primary outline on:click="{rechne}">Rechne</Button>
+<div class="ergebnis">{$progress}%</div>
   
 
-
+</Card>
 </main>
 
 <style>
@@ -72,6 +100,10 @@ return result;
     line-height: 1.35;
     font-weight: bold;
     font-size: large;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
   }
 
   p2 {
@@ -81,6 +113,26 @@ return result;
     font-size: small;
   }
 
+  .ergebnis {
+align-self: center;
+line-height: 1.5;
+    font-size: big;
+    font-weight: 700;
+    font-size:large;
 
+
+
+  }
+
+.input {
+  width: 8rem;
+  max-width: 12rem;
+  height: 4rem;
+    margin: 1rem auto;
+    line-height: 1.35;
+    font-size: small;
+
+
+}
   
 </style>
