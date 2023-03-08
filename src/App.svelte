@@ -43,12 +43,12 @@ return result;
   <Card>
   <Row>
 <Col>
-  <Icon src="public\times.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={trys} type="number" placeholder="Versuche?">
+  <Icon src="/times.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={trys} type="number" placeholder="Versuche?">
 
 </Col>
 
 <Col>
-  <Icon src="public\chance.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={odds} type="number" placeholder="Chance?">
+  <Icon src="/chance.svg" width="28px" size="2" spin="5" alt=""></Icon><input class="input" bind:value={odds} type="number" placeholder="Chance?">
 
 </Col>
 
